@@ -132,16 +132,11 @@ let items = [new Minecraft.ItemStack("minecraft:white_wool", 64), new Minecraft.
 let navigator = new Minecraft.ItemStack("minecraft:compass", 1);
 navigator.nameTag = "§r§fIsland Selector";
 
-let aquaTheGod = new Minecraft.ItemStack("minecraft:cyan_dye", 1);
-aquaTheGod.nameTag = "§r§bAqua The God";
-aquaTheGod.setLore(["§l§bAqua The God"]);
-
 Minecraft.system.runInterval(() => {
     let players = Minecraft.world.getPlayers();
 
     for (let player of players) {
         player.getComponent("inventory")?.container?.setItem(8, navigator);
-        player.getComponent("inventory")?.container?.setItem(7, aquaTheGod);
     }
 }, 20);
 
@@ -264,9 +259,7 @@ Minecraft.world.afterEvents.playerJoin.subscribe((event) => {
 
 let ranks: {
     [name: string]: string;
-} = {
-    MinecraftPEayer: "§c[OWNER]",
-};
+} = {};
 
 Minecraft.world.beforeEvents.playerLeave.subscribe((event) => {
     runCommand(`tellraw @a {"rawtext":[{"text":"§f[§c-§f] §7${event.player.nameTag}"}]}`);
